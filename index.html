@@ -59,49 +59,37 @@
     <!-- QR Code Section -->
     <section class="qr-section">
         <div class="container">
-            <h2 class="section-title">QR-код для быстрого доступа</h2>
+            <h2 class="section-title">QR-код для быстрого доступа к сайту</h2>
+            <p class="qr-description" style="text-align: center; color: #ffffff; margin-bottom: 20px; font-size: 16px;">Отсканируйте код, чтобы открыть эту страницу на телефоне</p>
             <div id="qrcode" class="qrcode-container"></div>
         </div>
     </section>
 
-    <script src="qrcode.min.js"></script>
+    <!-- Подключаем библиотеку QRCode.js через надёжный CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
     <script>
-        // Ждем полной загрузки страницы и библиотеки
-        window.addEventListener('load', function() {
+        // Генерируем QR-код после загрузки страницы
+        document.addEventListener('DOMContentLoaded', function() {
             const qrcodeContainer = document.getElementById('qrcode');
-            
+
             if (!qrcodeContainer) {
-                console.error('Контейнер QR-кода не найден');
+                console.error('Контейнер для QR-кода не найден');
                 return;
             }
-            
-            if (typeof QRCode === 'undefined') {
-                console.error('Библиотека QRCode не загружена');
-                qrcodeContainer.innerHTML = '<p style="color: red; padding: 20px;">Ошибка загрузки библиотеки QR-кода. Проверьте подключение к интернету.</p>';
-                return;
-            }
-            
+
             const currentUrl = window.location.href;
-            console.log('Генерирую QR-код для:', currentUrl);
-            
-            const canvas = document.createElement('canvas');
-            qrcodeContainer.appendChild(canvas);
-            
-            QRCode.toCanvas(canvas, currentUrl, {
+
+            new QRCode(qrcodeContainer, {
+                text: currentUrl,
                 width: 300,
-                margin: 2,
-                color: {
-                    dark: '#000000',
-                    light: '#FFFFFF'
-                }
-            }, function (error) {
-                if (error) {
-                    console.error('Ошибка генерации QR-кода:', error);
-                    qrcodeContainer.innerHTML = '<p style="color: red; padding: 20px;">Ошибка генерации QR-кода: ' + error.message + '</p>';
-                } else {
-                    console.log('QR-код успешно создан');
-                }
+                height: 300,
+                colorDark: "#000000",
+                colorLight: "#FFFFFF",
+                correctLevel: QRCode.CorrectLevel.H  // Высокий уровень коррекции ошибок (рекомендую для надёжности)
             });
+
+            console.log('QR-код сгенерирован для:', currentUrl);
         });
     </script>
 </body>
