@@ -65,6 +65,45 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        // Ждем полной загрузки страницы и библиотеки
+        window.addEventListener('load', function() {
+            const qrcodeContainer = document.getElementById('qrcode');
+            
+            if (!qrcodeContainer) {
+                console.error('Контейнер QR-кода не найден');
+                return;
+            }
+            
+            if (typeof QRCode === 'undefined') {
+                console.error('Библиотека QRCode не загружена');
+                qrcodeContainer.innerHTML = '<p style="color: red; padding: 20px;">Ошибка загрузки библиотеки QR-кода. Проверьте подключение к интернету.</p>';
+                return;
+            }
+            
+            const currentUrl = window.location.href;
+            console.log('Генерирую QR-код для:', currentUrl);
+            
+            const canvas = document.createElement('canvas');
+            qrcodeContainer.appendChild(canvas);
+            
+            QRCode.toCanvas(canvas, currentUrl, {
+                width: 300,
+                margin: 2,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function (error) {
+                if (error) {
+                    console.error('Ошибка генерации QR-кода:', error);
+                    qrcodeContainer.innerHTML = '<p style="color: red; padding: 20px;">Ошибка генерации QR-кода: ' + error.message + '</p>';
+                } else {
+                    console.log('QR-код успешно создан');
+                }
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
