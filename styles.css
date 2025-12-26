@@ -1,0 +1,399 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1e3a5f;
+    --secondary-color: #c9a227;
+    --accent-color: #8b1538;
+    --bg-cream: #faf6f0;
+    --bg-light: #f5efe6;
+    --text-dark: #2c3e50;
+    --text-light: #5d6d7e;
+    --gold-gradient: linear-gradient(135deg, #c9a227 0%, #d4af37 50%, #f0d78c 100%);
+    --navy-gradient: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-cream);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-cream);
+    position: relative;
+    padding: 40px 20px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(30, 58, 95, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out;
+    z-index: 1;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(30, 58, 95, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.01);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Contacts Section */
+.contacts {
+    padding: 80px 20px;
+    background: var(--navy-gradient);
+    text-align: center;
+    position: relative;
+}
+
+.contacts::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--gold-gradient);
+}
+
+.contacts-text {
+    font-size: 24px;
+    color: #ffffff;
+    max-width: 900px;
+    margin: 0 auto;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+.contact-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 4px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+}
+
+.contact-link:hover {
+    color: #f0d78c;
+    border-bottom-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Excursions Section */
+.excursions {
+    padding: 100px 20px;
+    background: var(--bg-light);
+    position: relative;
+}
+
+.excursions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--gold-gradient);
+}
+
+.section-title {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: -1px;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: var(--gold-gradient);
+    margin: 20px auto 0;
+    border-radius: 2px;
+}
+
+.excursions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.excursion-card {
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(30, 58, 95, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out both;
+    border: 2px solid rgba(201, 162, 39, 0.3);
+    width: 85%;
+}
+
+/* Чередование: нечетные слева, четные справа */
+.excursion-card:nth-child(odd) {
+    align-self: flex-start;
+    margin-left: 0;
+}
+
+.excursion-card:nth-child(even) {
+    align-self: flex-end;
+    margin-right: 0;
+}
+
+.excursion-card:nth-child(1) { animation-delay: 0.1s; }
+.excursion-card:nth-child(2) { animation-delay: 0.2s; }
+.excursion-card:nth-child(3) { animation-delay: 0.3s; }
+.excursion-card:nth-child(4) { animation-delay: 0.4s; }
+.excursion-card:nth-child(5) { animation-delay: 0.5s; }
+.excursion-card:nth-child(6) { animation-delay: 0.6s; }
+.excursion-card:nth-child(7) { animation-delay: 0.7s; }
+
+.excursion-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 25px 60px rgba(30, 58, 95, 0.3);
+    border-color: var(--secondary-color);
+}
+
+.excursion-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--gold-gradient);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.excursion-card:hover::after {
+    transform: scaleX(1);
+}
+
+.excursion-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.excursion-card:hover .excursion-image {
+    transform: scale(1.02);
+}
+
+/* QR Code Section */
+.qr-section {
+    padding: 100px 20px;
+    background: var(--navy-gradient);
+    text-align: center;
+    position: relative;
+}
+
+.qr-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--gold-gradient);
+}
+
+.qr-section .section-title {
+    color: #ffffff;
+}
+
+.qr-section .section-title::after {
+    background: var(--gold-gradient);
+}
+
+.qrcode-container {
+    display: inline-block;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    margin-top: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid var(--secondary-color);
+}
+
+.qrcode-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.qrcode-container canvas {
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+/* Footer decoration */
+.excursions::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--gold-gradient);
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .excursion-card {
+        width: 90%;
+    }
+    
+    .excursions-grid {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        padding: 30px 15px;
+    }
+
+    .hero-image {
+        border-radius: 12px;
+    }
+
+    .contacts {
+        padding: 60px 20px;
+    }
+
+    .contacts-text {
+        font-size: 18px;
+    }
+
+    .section-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+
+    .excursions {
+        padding: 60px 20px;
+    }
+
+    .excursions-grid {
+        gap: 40px;
+    }
+
+    .excursion-card {
+        width: 100%;
+    }
+    
+    .excursion-card:nth-child(odd),
+    .excursion-card:nth-child(even) {
+        align-self: center;
+    }
+
+    .excursion-card:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+
+    .qr-section {
+        padding: 60px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contacts {
+        padding: 40px 15px;
+    }
+
+    .contacts-text {
+        font-size: 16px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .excursions {
+        padding: 40px 15px;
+    }
+
+    .excursions-grid {
+        gap: 30px;
+    }
+
+    .qr-section {
+        padding: 40px 15px;
+    }
+
+    .qrcode-container {
+        padding: 20px;
+    }
+}
